@@ -1,20 +1,25 @@
+
 const Todo = (todo) => {
-  const check = () => {
-    this.checked = true;
+  const updateTitle = (value) => {
+    todo.title = value;
   }
 
-  return {...todo,
-          check
+  const updateDesc = (value) => {
+    todo.description = value;
+  }
+
+  const updateDueDate = (value) => {
+    todo.dueDate = value;
+  }
+
+  const updatePriority = (value) => {
+    todo.priority
+  }
+  return {...todo
          };
 }
 
-const todo = Todo({title: "Go shopping",
-              description: "Go to the supermarket",
-              dueDate: "2020-07-20",
-              priority: 1,
-              checked: false});
+const Project = () => {
 
+} 
 
-console.log(todo.checked);
-console.log(todo.check());
-console.log(todo.checked);
