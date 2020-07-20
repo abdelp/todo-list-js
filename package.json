@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/abdelp/todo-list-js/issues"
   },
-  "homepage": "https://github.com/abdelp/todo-list-js#readme"
+  "homepage": "https://github.com/abdelp/todo-list-js#readme",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
 }
