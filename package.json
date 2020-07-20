@@ -1,0 +1,22 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "A TO-DO application made with javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdelp/todo-list-js.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Elbie Moonga & Abdel Pérez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abdelp/todo-list-js/issues"
+  },
+  "homepage": "https://github.com/abdelp/todo-list-js#readme"
+}
