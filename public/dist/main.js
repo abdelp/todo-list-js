@@ -91,9 +91,46 @@
   !*** ./public/src/index.js ***!
   \*****************************/
 /*! no exports provided */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (21:31)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| };\\n| \\n> subscribe('todo-create', data) => {\\n|   database.add(data);\\n| };\");\n\n//# sourceURL=webpack:///./public/src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_doman__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/doman */ \"./public/src/modules/doman.js\");\n/* harmony import */ var _modules_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/database */ \"./public/src/modules/database.js\");\n/* harmony import */ var _models_todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./models/todo */ \"./public/src/models/todo.js\");\n\r\n\r\n\r\n\r\nconst addTodo = () => {\r\n  const data = _modules_doman__WEBPACK_IMPORTED_MODULE_0__[\"getFormValues\"]('todo-form');\r\n  _models_todo__WEBPACK_IMPORTED_MODULE_2__[\"create\"]('todo', data);\r\n};\r\n\r\nlet addTodoBtn = document.getElementById('add-todo');\r\naddTodoBtn.onclick = addTodo;\n\n//# sourceURL=webpack:///./public/src/index.js?");
+
+/***/ }),
+
+/***/ "./public/src/models/todo.js":
+/*!***********************************!*\
+  !*** ./public/src/models/todo.js ***!
+  \***********************************/
+/*! exports provided: create */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"create\", function() { return create; });\n/* harmony import */ var _modules_database__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/database */ \"./public/src/modules/database.js\");\n\r\n\r\nconst params = ({title, desc, dueDate, priority}) => {\r\n  return {title, desc, dueDate, priority};\r\n};\r\n\r\nconst create = (collection, data) => {\r\n  document.body.innerHTML = JSON.stringify(params(data));\r\n  _modules_database__WEBPACK_IMPORTED_MODULE_0__[\"add\"](collection, params(data))\r\n  .then(result => {\r\n    console.log(result);\r\n  })\r\n  .catch(error => {\r\n    console.log(error);\r\n  });\r\n};\r\n\r\nconst Todo = (data) => {\r\n\r\n};\r\n\r\n\n\n//# sourceURL=webpack:///./public/src/models/todo.js?");
+
+/***/ }),
+
+/***/ "./public/src/modules/database.js":
+/*!****************************************!*\
+  !*** ./public/src/modules/database.js ***!
+  \****************************************/
+/*! exports provided: add */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"add\", function() { return add; });\nlet firestore = firebase.firestore();\r\n\r\nconst add = async (collection, data) => {\r\n  let collRef = firestore.collection(collection);\r\n  let result;\r\n\r\n  try {\r\n    result = await collRef.add(data);\r\n  }catch(error) {\r\n    result = await error;\r\n  };\r\n\r\n  return result;\r\n};\r\n\r\nconst getUserData = async () => {\r\n  let collRef = firestore.collection(collection);\r\n  let result;\r\n\r\n  try {\r\n    result = await collRef.add(data);\r\n  }catch(error) {\r\n    result = await error;\r\n  };\r\n\r\n  return result;\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./public/src/modules/database.js?");
+
+/***/ }),
+
+/***/ "./public/src/modules/doman.js":
+/*!*************************************!*\
+  !*** ./public/src/modules/doman.js ***!
+  \*************************************/
+/*! exports provided: getFormValues */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getFormValues\", function() { return getFormValues; });\nconst getFormValues = formId => {\r\n  const elements = document.getElementById(formId).elements;\r\n  let obj = {};\r\n  for(let i = 0; i < elements.length; i++) {\r\n    const item = elements.item(i);\r\n    obj[item.name] = item.value;\r\n  }\r\n\r\n  return obj;\r\n}\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./public/src/modules/doman.js?");
 
 /***/ })
 
