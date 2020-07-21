@@ -90,10 +90,10 @@
 /*!*****************************!*\
   !*** ./public/src/index.js ***!
   \*****************************/
-/*! no static exports found */
+/*! no exports provided */
 /***/ (function(module, exports) {
 
-eval("\nconst Project = (title) => {\n  let toDoList = [];\n  \n  const addTodo = (todo) => {\n  \ttoDoList.push(todo);\n  }\n\n  const deleteTodo = (todo) => {\n    toDoList.splice(toDoList.indexOf(todo),1)\n  }\n\n  const readList = () => {\n    return toDoList;\n  }\n\t\n  return {title,addTodo,readList,deleteTodo}\n} \n\nconst Todo = (id,title,desc,dueDate,priority) => {\n\treturn {id,title,desc,dueDate,priority}\n}\n\nlet testp = Project('Default');\n\nconst t1 = Todo(1,'test1','This is a test',\"20-07-21\",'high');\nconst t2 = Todo(2,'test2','This is a test',\"20-07-21\",'high');\nconst t3 = Todo(3,'test3','This is a test',\"20-07-21\",'high');\n\ntestp.addTodo(t1);\ntestp.addTodo(t2);\ntestp.addTodo(t3);\n\nconst show = () => {\n  testp.readList().forEach(todo => {\n    console.log(todo);\n  });\n}\n\nshow();\n\ntestp.deleteTodo(t1);\nconsole.log(\"_______________________________\");\n\nshow();\n\n\n\n\n\n//# sourceURL=webpack:///./public/src/index.js?");
+eval("throw new Error(\"Module parse failed: Unexpected token (21:31)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| };\\n| \\n> subscribe('todo-create', data) => {\\n|   database.add(data);\\n| };\");\n\n//# sourceURL=webpack:///./public/src/index.js?");
 
 /***/ })
 

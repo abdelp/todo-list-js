@@ -1,48 +1,47 @@
+import * as Doman from './modules/doman';
 
 const Project = (title) => {
   let toDoList = [];
   
   const addTodo = (todo) => {
   	toDoList.push(todo);
-  }
+  };
 
   const deleteTodo = (todo) => {
-    toDoList.splice(toDoList.indexOf(todo),1)
-  }
+    toDoList.splice(toDoList.indexOf(todo),1);
+  };
 
   const readList = () => {
     return toDoList;
-  }
-	
+  };
+
   return {title,addTodo,readList,deleteTodo}
-} 
+};
 
-const Todo = (id,title,desc,dueDate,priority) => {
-	return {id,title,desc,dueDate,priority}
-}
+subscribe('todo-create', data) => {
+  database.add(data);
+};
 
-let testp = Project('Default');
+const Todo = (data) => {
 
-const t1 = Todo(1,'test1','This is a test',"20-07-21",'high');
-const t2 = Todo(2,'test2','This is a test',"20-07-21",'high');
-const t3 = Todo(3,'test3','This is a test',"20-07-21",'high');
+  const create(data) => {
+    publish('todo-create', data);
+  };
 
-testp.addTodo(t1);
-testp.addTodo(t2);
-testp.addTodo(t3);
+	return {...data};
+};
 
-const show = () => {
-  testp.readList().forEach(todo => {
-    console.log(todo);
-  });
-}
+const data = {id: 1, title: "Title", desc: "Desc", dueDate: "2020-01-01", priority: 1};
 
-show();
+let todo = Todo(data);
 
-testp.deleteTodo(t1);
-console.log("_______________________________");
+console.log(todo);
 
-show();
+const addTodo = () => {
+  const data = Doman.getFormValues('todo-form');
+  let todo = Todo.create(data);
+  console.log(todo);
+};
 
-
-
+let addTodoBtn = document.getElementById('add-todo');
+addTodoBtn.onclick = addTodo;
