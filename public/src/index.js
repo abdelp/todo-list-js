@@ -1,5 +1,5 @@
 
-const Todo = (todo) => {
+const TodoCrud = (todo) => {
   const updateTitle = (value) => {
     todo.title = value;
   }
@@ -19,7 +19,21 @@ const Todo = (todo) => {
          };
 }
 
-const Project = () => {
+const Todo = (id,title,desc,dueDate,priority) => {
+	return {id,title,desc,dueDate,priority}
+}
 
+const Project = () => {
+  let toDoList = [];
+  
+  const addTodo = (todo) => {
+  	list.push(todo);
+  }
+
+  const readList = () => {
+    return toDoList;
+  }
+	
+  return {title,addTodo}
 } 
 
