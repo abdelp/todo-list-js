@@ -23,13 +23,20 @@
   },
   "homepage": "https://github.com/abdelp/todo-list-js#readme",
   "devDependencies": {
+    "autoprefixer": "^9.8.5",
     "css-loader": "^3.6.0",
+    "exports-loader": "^1.1.0",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "bootstrap": "^4.5.0"
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   }
 }

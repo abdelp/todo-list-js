@@ -17,54 +17,80 @@
   </head>
   <body>
     <div class="container">
-      <!-- <form id="todo-form" class="mb-2">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp" placeholder="Enter title">
+      <div class="modal fade" id="todo-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New To-Do</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="todo-form" class="mb-2">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionHelp" placeholder="Enter description">
+                </div>
+                <div class="form-group">
+                  <label for="dueDate">Date</label>
+                  <input type="date" class="form-control" id="dueDate" name="dueDate" placeholder="">
+                </div>
+                <div class="form-group">
+                  <select name="priority" class="custom-select">
+                    <option value="1">High</option>
+                    <option value="2">Medium</option>
+                    <option value="3" selected>Low</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="add-todo" type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionHelp" placeholder="Enter description">
+      </div>
+      <div class="modal fade" id="project-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="project-form" class="mb-2">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionHelp" placeholder="Enter description">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="add-todo" type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="dueDate">Date</label>
-          <input type="date" class="form-control" id="dueDate" name="dueDate" placeholder="">
-        </div>
-        <div class="form-group">
-          <select name="priority" class="custom-select">
-            <option value="1">High</option>
-            <option value="2">Medium</option>
-            <option value="3" selected>Low</option>
-          </select>
-        </div>
-        <div class="form-group text-center">
-          <button id="add-todo" type="button" class="btn btn-primary">Add</button>
-        </div>
-      </form> -->
-      <form id="project-form" class="mb-2">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp" placeholder="Enter title">
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionHelp" placeholder="Enter description">
-        </div>
-        <div class="form-group">
-          <label for="dueDate">Date</label>
-          <input type="date" class="form-control" id="dueDate" name="dueDate" placeholder="">
-        </div>
-        <div class="form-group">
-          <select name="priority" class="custom-select">
-            <option value="1">High</option>
-            <option value="2">Medium</option>
-            <option value="3" selected>Low</option>
-          </select>
-        </div>
-        <div class="form-group text-center">
-          <button id="add-todo" type="button" class="btn btn-primary">Add</button>
-        </div>
-      </form>
+      </div>
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#todo-modal">
+        New To-Do
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#project-modal">
+        New Project
+      </button>
     </div>
   </body>
 </html>
