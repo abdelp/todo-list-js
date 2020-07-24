@@ -1,7 +1,7 @@
 import * as Database from '../modules/database';
 
-const params = ({title, desc, dueDate, priority}) => {
-  return {title, desc, dueDate, priority};
+const params = ({title, description, dueDate, priority}) => {
+  return {title, description, dueDate, priority};
 };
 
 const create = (collection, data) => {
