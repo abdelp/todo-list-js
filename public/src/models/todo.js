@@ -4,8 +4,8 @@ const params = ({title, description, dueDate, priority}) => {
   return {title, description, dueDate, priority};
 };
 
-const create = (collection, data) => {
-  document.body.innerHTML = JSON.stringify(params(data));
+const create = (data) => {
+  const collection = 'todo';
   Database.add(collection, params(data))
   .then(result => {
     console.log(result);

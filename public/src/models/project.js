@@ -1,17 +1,22 @@
-const Project = (title) => {
-  let toDoList = [];
-  
-  const addTodo = (todo) => {
-  	toDoList.push(todo);
-  };
+import * as Database from '../modules/database';
 
-  const deleteTodo = (todo) => {
-    toDoList.splice(toDoList.indexOf(todo),1);
-  };
-
-  const readList = () => {
-    return toDoList;
-  };
-
-  return {title,addTodo,readList,deleteTodo}
+const params = ({title, description}) => {
+  return {title, description};
 };
+
+const create = (data) => {
+  const collection = 'project';
+  Database.add(collection, params(data))
+  .then(result => {
+    console.log(result);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
+
+const Todo = (data) => {
+
+};
+
+export {create};

@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const addTodo = () => {
   const data = Doman.getFormValues('todo-form');
-  Todo.create('todo', data);
+  Todo.create(data);
+  Doman.cleanForm('todo-form');
 };
 
 let addTodoBtn = document.getElementById('add-todo');

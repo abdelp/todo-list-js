@@ -7,7 +7,12 @@ const getFormValues = formId => {
   }
 
   return obj;
-}
+};
 
-export {getFormValues};
+const cleanForm = formId => {
+  let form = document.getElementById(formId);
+  form.reset();
+};
+
+export {getFormValues,cleanForm};
 
