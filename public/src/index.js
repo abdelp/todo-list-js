@@ -29,6 +29,15 @@ const addTodo = () => {
 let addTodoBtn = document.getElementById('add-todo');
 addTodoBtn.onclick = addTodo;
 
-Project.getDefaultProject();
+if (!localStorage.getItem("currentProject")) {
+  Project.getDefaultProject()
+  .then(result => {
+    const defaultProject = result;
+    Database.setCurrentProject(defaultProject);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
 
 if(!localStorage.getItem("userId")) Database.createUser();
