@@ -13,8 +13,8 @@ const add = async (collection, data) => {
   return result;
 };
 
-const setDefaultProjectId = (projectId) => {
-  localStorage.setItem('defaultProjectId', projectId);
+const setCurrentProject = (projectId) => {
+  localStorage.setItem('currentProject', projectId);
 };
 
 const getDoc = async (collection) => {
@@ -49,4 +49,4 @@ const getUserId = () => {
   return localStorage.getItem("userId");
 };
 
-export {add, getDoc, createUser, getUserId};
+export {add, getDoc, createUser, getUserId, setCurrentProject};
