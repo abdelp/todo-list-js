@@ -15,18 +15,16 @@ const create = (data) => {
   });
 };
 
-const Todo = (data) => {
+const getDefaultProject = async () => {
+  let result;
 
-};
+  try {
+    result = await Database.getDoc('projects');
+  } catch(error) {
+    result = await error;
+  }
 
-const getDefaultProject = () => {
-  Database.getDoc('projects')
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.log(error);
-  })
+  return result[0];
 };
 
 export {create, getDefaultProject};
