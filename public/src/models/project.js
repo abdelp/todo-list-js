@@ -5,7 +5,7 @@ const params = ({title, description}) => {
 };
 
 const create = (data) => {
-  const collection = 'project';
+  const collection = 'projects';
   Database.add(collection, params(data))
   .then(result => {
     console.log(result);
@@ -19,4 +19,14 @@ const Todo = (data) => {
 
 };
 
-export {create};
+const getDefaultProject = () => {
+  Database.getDoc('projects')
+  .then(result => {
+    console.log(result);
+  })
+  .catch(error => {
+    console.log(error);
+  })
+};
+
+export {create, getDefaultProject};

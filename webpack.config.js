@@ -29,8 +29,5 @@ module.exports = {
         ],
       },
     ],
-  },
-  devServer: {
-    contentBase: './public/dist',
-  },
+  }
 };

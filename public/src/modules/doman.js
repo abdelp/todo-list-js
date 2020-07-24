@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const getFormValues = formId => {
   const elements = document.getElementById(formId).elements;
   let obj = {};
@@ -14,5 +16,9 @@ const cleanForm = formId => {
   form.reset();
 };
 
-export {getFormValues,cleanForm};
+const hideModal = modalId => {
+  $(modalId).modal('hide');
+}
+
+export {getFormValues,cleanForm, hideModal};
 
