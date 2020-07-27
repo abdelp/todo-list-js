@@ -36,9 +36,9 @@ const userId = Database.getUserId();
 
 if(!userId){
   Database.createUser()
-    .then(user => {
-      const data = {title:"Default",description:"This is the default project for your application",userId:user.id}
-      Project.create(data)
+  .then(user => {
+    const data = {title:"Default",description:"This is the default project for your application",userId:user.id}
+    Project.create(data)
     .then(project => {
       Database.setCurrentProject(project.id);
     })
@@ -48,5 +48,8 @@ if(!userId){
   });
 }
 
-
-
+Project.allProjects(userId)
+.then(result => {
+  const list = Doman.createList(result);
+  Doman.addChild('projects-list', list);
+});
