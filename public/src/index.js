@@ -10,6 +10,8 @@ import 'bootstrap/js/dist/modal';
 const addProject = () => {
   const formId = 'project-form';
   const data = Doman.getFormValues(formId);
+  const userId = Database.getUserId();
+  data.userId = userId;
   Project.create(data);
   Doman.cleanForm(formId);
   Doman.hideModal('project-modal');
