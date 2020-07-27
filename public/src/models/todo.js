@@ -15,8 +15,4 @@ const create = (data) => {
   });
 };
 
-const Todo = (data) => {
-
-};
-
 export {create};
