@@ -1,7 +1,7 @@
 import * as Database from '../modules/database';
 
-const params = ({title, description}) => {
-  return {title, description};
+const params = ({title, description,userId}) => {
+  return {title, description,userId};
 };
 
 const create = (data) => {
@@ -26,5 +26,10 @@ const getDefaultProject = async () => {
 
   return result[0];
 };
+
+const allProjects = async () => {
+  const collection = 'projects';
+  const projects = Database.getDoc(collection);
+}
 
 export {create, getDefaultProject};
