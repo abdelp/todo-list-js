@@ -23,6 +23,7 @@ addProjectBtn.onclick = addProject;
 const addTodo = () => {
   const data = Doman.getFormValues('todo-form');
   const userId = Database.getUserId();
+  const currentProject = Database.getDefaultProject();
   Todo.create({...data, userId});
   Doman.cleanForm('todo-form');
   Doman.hideModal('todo-modal');
@@ -31,15 +32,21 @@ const addTodo = () => {
 let addTodoBtn = document.getElementById('add-todo');
 addTodoBtn.onclick = addTodo;
 
-if (!localStorage.getItem("currentProject")) {
-  Project.getDefaultProject()
-  .then(result => {
-    const defaultProject = result;
-    Database.setCurrentProject(defaultProject);
-  })
-  .catch(error => {
-    console.log(error);
+const userId = Database.getUserId();
+
+if(!userId){
+  Database.createUser()
+    .then(user => {
+      const data = {title:"Default",description:"This is the default project for your application",userId:user.id}
+      Project.create(data)
+    .then(project => {
+      Database.setCurrentProject(project.id);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   });
 }
 
-if(!localStorage.getItem("userId")) Database.createUser();
+
+
