@@ -19,7 +19,7 @@ const setCurrentProject = (projectId) => {
 
 const getCurrentProject = () => {
   return localStorage.getItem('currentProject');
-}
+};
 
 const getDoc = async (collection, params = {}) => {
   let collectionRef = firestore.collection(collection);
@@ -46,20 +46,6 @@ const getDoc = async (collection, params = {}) => {
     docs.forEach(doc => {
       result.push({id: doc.id, ...doc.data()});
     });
-  } catch(error) {
-    console.log(error);
-    result = await error;
-  };
-
-  return result;
-};
-
-const createUser = async () => {
-  let result;
-
-  try {
-    result = await add("users", {userName: "test"});
-    localStorage.setItem("userId", result.id);
   } catch(error) {
     result = await error;
   };
@@ -90,4 +76,4 @@ const currentTimestamp = () => {
   return firebase.firestore.FieldValue.serverTimestamp();
 };
 
-export {add, getDoc, createUser, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
+export {add, getDoc, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};

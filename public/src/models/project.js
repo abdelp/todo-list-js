@@ -1,13 +1,13 @@
 import * as Database from '../modules/database';
 
-const params = ({title, description, userId, created_at}) => {
-  return {title, description, userId, created_at};
+const params = ({title, description, userId, createdAt}) => {
+  return {title, description, userId, createdAt};
 };
 
 const create = async (data) => {
   const collection = 'projects';
   let result;
-  data.created_at = Database.currentTimestamp();
+  data.createdAt = Database.currentTimestamp();
 
   try {
     result = await Database.add(collection, params(data));

@@ -2,6 +2,7 @@ import * as Doman from './modules/doman';
 import * as Database from './modules/database';
 import * as Todo from './models/todo';
 import * as Project from './models/project';
+import * as User from './models/user';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/js/dist/util';
@@ -34,7 +35,7 @@ addTodoBtn.onclick = addTodo;
 const userId = Database.getUserId();
 
 if(!userId){
-  Database.createUser()
+  User.create({userName: 'test'})
   .then(user => {
     const data = {title:"Default",description:"This is the default project for your application",userId:user.id}
     Project.create(data)
