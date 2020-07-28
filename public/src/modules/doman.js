@@ -20,25 +20,41 @@ const hideModal = modalId => {
   $(modalId).modal('hide');
 }
 
-const createList = (list) => {
+const createList = (list,classes,method) => {
   let ul = document.createElement('ul');
-  ul.className = 'list-group';
-
+  ul.className = 'list-group mt-3';
   list.forEach(item => {
     let li = document.createElement('li');
-    li.className = 'list-group-item m-2 border';
+    li.className = classes;
     li.id = item.id;
     li.innerText = item.title;
+    li.onclick = method.bind(li);
     ul.appendChild(li);
   });
 
   return ul;
 };
 
+const showTodos =  (id,todoarr) => {
+  const todos = document.getElementById('todo-list');
+  todos.innerHTML = '';
+  todos.innerText = `${id}`;
+}
+
+const displayTodo = () => {
+  const todos = document.getElementById('todo-list');
+  todos.innerHTML = '';
+}
+
+const cleanElement = (containerId) => {
+  let container = document.getElementById(containerId);
+  container.innerHTML = '';
+}
+
 const addChild = (containerId, element) => {
   let container = document.getElementById(containerId);
   container.appendChild(element);
 };
 
-export {getFormValues,cleanForm, hideModal, createList, addChild};
+export {getFormValues,cleanForm, hideModal, createList, addChild,showTodos,displayTodo,cleanElement};
 
