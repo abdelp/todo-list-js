@@ -48,6 +48,7 @@ if(!userId){
   });
 }
 
+console.log(userId);
 Project.allProjects(userId)
 .then(result => {
   const list = Doman.createList(result);

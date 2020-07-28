@@ -18,10 +18,11 @@ const setCurrentProject = (projectId) => {
 };
 
 const getDoc = async (collection, params = []) => {
-  const collectionRef = firestore.collection(collection);
+  let collectionRef = firestore.collection(collection);
+
   if(params) {
     params.forEach(param => {
-      collectionRef.where(param.key,param.sign,param.value);
+      collectionRef = collectionRef.where(param.key, param.sign, param.value);
     });
   }
 
