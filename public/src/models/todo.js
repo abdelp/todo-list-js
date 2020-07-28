@@ -15,4 +15,10 @@ const create = (data) => {
   });
 };
 
-export {create};
+const allTodos = async (projectId) => {
+  const collection = `projects/${projectId}/todos`;
+  const todos = await Database.getDoc(collection);
+  return todos;
+}
+
+export {create,allTodos};
