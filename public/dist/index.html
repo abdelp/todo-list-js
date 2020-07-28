@@ -93,12 +93,18 @@
             </button>
           </div>
         </div>
-        <div id="todo-list" class="col-12 col-md-9"></div>
-      </div>
+        <div class='col-12 col-md-9'> 
+          <div class="d-flex flex-row justify-content-between"> 
+          <h2 class='mt-3'>Project: <small id='project-name'></small></h2>
+          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#todo-modal">
+            New To-Do
+          </button>
+          </div>
+          <div id="todo-list">
 
-      <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#todo-modal" hidden>
-        New To-Do
-      </button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
