@@ -17,6 +17,10 @@ const setCurrentProject = (projectId) => {
   localStorage.setItem('currentProject', projectId);
 };
 
+const getCurrentProject = () => {
+  return localStorage.getItem('currentProject');
+}
+
 const getDoc = async (collection, params = []) => {
   let collectionRef = firestore.collection(collection);
 
@@ -83,4 +87,4 @@ const currentTimestamp = () => {
   return firebase.firestore.FieldValue.serverTimestamp();
 };
 
-export {add, getDoc, createUser, getUserId, setCurrentProject, getDefaultProject, currentTimestamp};
+export {add, getDoc, createUser, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
