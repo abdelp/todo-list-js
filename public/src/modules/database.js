@@ -21,7 +21,7 @@ const getCurrentProject = () => {
   return localStorage.getItem('currentProject');
 }
 
-const getDoc = async (collection, params = []) => {
+const getDoc = async (collection, params = {}) => {
   let collectionRef = firestore.collection(collection);
 
   if(params) {
@@ -32,6 +32,9 @@ const getDoc = async (collection, params = []) => {
     }
     if (params.orderBy) {
       collectionRef = collectionRef.orderBy(params.orderBy.field, params.orderBy.order);
+    }
+    if (params.doc) {
+      collectionRef.doc(params.doc);
     }
   }
 
