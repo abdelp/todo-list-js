@@ -21,7 +21,6 @@ const getDoc = async (collection, params = []) => {
   let collectionRef = firestore.collection(collection);
 
   if(params) {
-    console.log(params);
     if(params.params) {
       params.params.forEach(param => {
         collectionRef = collectionRef.where(param.key, param.sign, param.value);
