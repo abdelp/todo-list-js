@@ -48,9 +48,18 @@ if(!userId){
   });
 }
 
-console.log(userId);
+
+
 Project.allProjects(userId)
 .then(result => {
-  const list = Doman.createList(result);
+  const onclickHandler = async function() 
+  {
+    const todos = await Todo.allTodos(this.id);
+    const todoList = Doman.createList(todos,'list-group-item',Doman.displayTodo);
+    Doman.cleanElement('todo-list');
+    Doman.addChild('todo-list',todoList);
+  };
+
+  const list = Doman.createList(result,'btn btn-info m-2',onclickHandler);
   Doman.addChild('projects-list', list);
 });
