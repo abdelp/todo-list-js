@@ -22,9 +22,8 @@ addProjectBtn.onclick = addProject;
 
 const addTodo = () => {
   const data = Doman.getFormValues('todo-form');
-  const userId = Database.getUserId();
-  const currentProject = Database.getDefaultProject();
-  Todo.create({...data, userId});
+  const currentProject = Database.getCurrentProject();
+  Todo.create(currentProject,data);
   Doman.cleanForm('todo-form');
   Doman.hideModal('todo-modal');
 };
@@ -41,11 +40,14 @@ if(!userId){
     Project.create(data)
     .then(project => {
       Database.setCurrentProject(project.id);
+      Doman.setTitle(data.title);
     })
     .catch(error => {
       console.log(error);
     });
   });
+}else {
+  Database.get
 }
 
 
@@ -54,6 +56,8 @@ Project.allProjects(userId)
 .then(result => {
   const onclickHandler = async function() 
   {
+    Database.setCurrentProject(this.id);
+    Doman.setTitle(this.innerHTML);
     const todos = await Todo.allTodos(this.id);
     const todoList = Doman.createList(todos,'list-group-item',Doman.displayTodo);
     Doman.cleanElement('todo-list');
