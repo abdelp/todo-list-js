@@ -35,10 +35,9 @@ const createList = (list,classes,method) => {
   return ul;
 };
 
-const showTodos =  (id,todoarr) => {
-  const todos = document.getElementById('todo-list');
-  todos.innerHTML = '';
-  todos.innerText = `${id}`;
+const setTitle = (title) => {
+  const elem = document.getElementById('project-name');
+  elem.innerHTML = title ;
 }
 
 const displayTodo = () => {
@@ -56,5 +55,5 @@ const addChild = (containerId, element) => {
   container.appendChild(element);
 };
 
-export {getFormValues,cleanForm, hideModal, createList, addChild,showTodos,displayTodo,cleanElement};
+export {getFormValues,cleanForm, hideModal, createList, addChild,displayTodo,cleanElement,setTitle};
 
