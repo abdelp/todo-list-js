@@ -21,9 +21,15 @@ const getDoc = async (collection, params = []) => {
   let collectionRef = firestore.collection(collection);
 
   if(params) {
-    params.forEach(param => {
-      collectionRef = collectionRef.where(param.key, param.sign, param.value);
-    });
+    console.log(params);
+    if(params.params) {
+      params.params.forEach(param => {
+        collectionRef = collectionRef.where(param.key, param.sign, param.value);
+      });
+    }
+    if (params.orderBy) {
+      collectionRef = collectionRef.orderBy(params.orderBy.field, params.orderBy.order);
+    }
   }
 
   let result = [];
@@ -35,6 +41,7 @@ const getDoc = async (collection, params = []) => {
       result.push({id: doc.id, ...doc.data()});
     });
   } catch(error) {
+    console.log(error);
     result = await error;
   };
 
@@ -68,9 +75,13 @@ const getDefaultProject = async (userId) => {
   return result[0];
 };
 
-
 const getUserId = () => {
   return localStorage.getItem("userId");
 };
 
-export {add, getDoc, createUser, getUserId, setCurrentProject, getDefaultProject};
+const currentTimestamp = () => {
+  console.log(firebase.firestore.FieldValue.serverTimestamp());
+  return firebase.firestore.FieldValue.serverTimestamp();
+};
+
+export {add, getDoc, createUser, getUserId, setCurrentProject, getDefaultProject, currentTimestamp};
