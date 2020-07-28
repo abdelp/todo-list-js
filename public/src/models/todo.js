@@ -1,11 +1,11 @@
 import * as Database from '../modules/database';
 
-const params = ({title, description, dueDate, priority, userId}) => {
-  return {title, description, dueDate, priority, userId};
+const params = ({title, description, dueDate, priority}) => {
+  return {title, description, dueDate, priority};
 };
 
-const create = (data) => {
-  const collection = 'todos';
+const create = (projectId,data) => {
+  const collection = `projects/${projectId}/todos`;
   Database.add(collection, params(data))
   .then(result => {
     console.log(result);
