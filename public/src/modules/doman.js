@@ -26,7 +26,7 @@ const createList = (list) => {
 
   list.forEach(item => {
     let li = document.createElement('li');
-    li.className = 'list-group-item';
+    li.className = 'list-group-item m-2 border';
     li.id = item.id;
     li.innerText = item.title;
     ul.appendChild(li);
