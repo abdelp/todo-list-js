@@ -47,7 +47,13 @@ if(!userId){
     });
   });
 }else {
-  Database.get
+  Database.getDoc('projects', {doc: Database.getCurrentProject()})
+  .then(doc => {
+    Doman.setTitle(doc[0].title);
+  })
+  .catch(error => {
+    console.log(error);
+  });
 }
 
 
