@@ -5,10 +5,6 @@ import * as Project from './models/project';
 import * as User from './models/user';
 import PubSub from 'pubsub-js';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/js/dist/util';
-import 'bootstrap/js/dist/modal';
-
 const addProject = () => {
   const formId = 'project-form';
   const data = Doman.getFormValues(formId);
