@@ -29,6 +29,7 @@ const addTodo = () => {
   Todo.create(currentProject, data);
   Doman.cleanForm('todo-form');
   Doman.hideModal('todo-modal');
+  PubSub.publish('LOAD TODOS',currentProject);
 };
 
 let addTodoBtn = document.getElementById('add-todo');
@@ -64,14 +65,10 @@ const loadProjects = () => {
   Doman.cleanElement('projects-list');
   Project.allProjects(userId)
     .then(result => {
-      console.log(result);
       const onclickHandler = async function () {
         Database.setCurrentProject(this.id);
         Doman.setTitle(this.innerHTML);
-        const todos = await Todo.allTodos(this.id);
-        const todoList = Doman.createList(todos, 'list-group-item', Doman.displayTodo);
-        Doman.cleanElement('todo-list');
-        Doman.addChild('todo-list', todoList);
+        loadTodos('',this.id);
       };
 
       const list = Doman.createList(result, 'btn btn-info m-2', onclickHandler);
@@ -79,6 +76,14 @@ const loadProjects = () => {
     });
 }
 
-let token = PubSub.subscribe('LOAD PROJECTS', loadProjects);
+const loadTodos = async (msg,projectId) => {
+  const todos = await Todo.allTodos(projectId);
+  const todoList = Doman.createList(todos, 'list-group-item', Doman.displayTodo);
+  Doman.cleanElement('todo-list');
+  Doman.addChild('todo-list', todoList);
+}
+
+const projectToken = PubSub.subscribe('LOAD PROJECTS', loadProjects);
+const todoToken = PubSub.subscribe('LOAD TODOS', loadTodos);
 
 loadProjects();
