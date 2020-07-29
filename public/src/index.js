@@ -66,17 +66,25 @@ const loadProjects = () => {
       const onclickHandler = async function () {
         Database.setCurrentProject(this.id);
         Doman.setTitle(this.innerHTML);
-        loadTodos('',this.id);
+        loadTodos('', this.id);
       };
 
-      const list = Doman.createList(result, 'btn btn-info m-2', onclickHandler);
+      const projectsButtons = result.map(item => Doman.createButton({id: item.id, innerText: item.title, onclick: onclickHandler }));
+      const list = Doman.createList(projectsButtons);
       Doman.addChild('projects-list', list);
     });
 }
 
 const loadTodos = async (msg,projectId) => {
   const todos = await Todo.allTodos(projectId);
-  const todoList = Doman.createList(todos, 'list-group-item', Doman.displayTodo);
+  let todoCollaps = [];
+
+  todos.forEach(todo => {
+    const todoCollapse = Doman.createCollapse({title: todo.title });
+    todoCollapses.push(todoCollapse);
+  });
+
+  const todoList = Doman.createList(todosCollapses, 'list-group-item');
   Doman.cleanElement('todo-list');
   Doman.addChild('todo-list', todoList);
 }
