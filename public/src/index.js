@@ -45,6 +45,7 @@ if (!userId) {
         .then(project => {
           Database.setCurrentProject(project.id);
           Doman.setTitle(data.title);
+          loadProjects();
         })
         .catch(error => {
           console.log(error);
@@ -62,6 +63,7 @@ if (!userId) {
 }
 
 const loadProjects = () => {
+  const userId = Database.getUserId();
   Doman.cleanElement('projects-list');
   Project.allProjects(userId)
     .then(result => {
