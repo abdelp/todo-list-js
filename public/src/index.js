@@ -54,12 +54,12 @@ if (!userId) {
   Database.getDoc('projects', { doc: Database.getCurrentProject() })
     .then(doc => {
       Doman.setTitle(doc[0].title);
+      loadTodos('',doc[0].id)
     })
     .catch(error => {
       console.log(error);
     });
 }
-
 
 const loadProjects = () => {
   Doman.cleanElement('projects-list');
