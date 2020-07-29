@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 const getFormValues = formId => {
   const elements = document.getElementById(formId).elements;
   let obj = {};
@@ -18,7 +16,7 @@ const cleanForm = formId => {
 
 const hideModal = modalId => {
   $(`#${modalId}`).modal('hide');
-}
+};
 
 const createList = (list,classes,method) => {
   let ul = document.createElement('ul');
