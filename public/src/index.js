@@ -37,7 +37,7 @@ const userId = Database.getUserId();
 if(!userId){
   User.create({userName: 'test'})
   .then(user => {
-    const data = {title:"Default",description:"This is the default project for your application",userId:user.id}
+    const data = {title: "Default", description: "This is the default project for your application", userId: user.id};
     Project.create(data)
     .then(project => {
       Database.setCurrentProject(project.id);
@@ -57,20 +57,19 @@ if(!userId){
   });
 }
 
-
-
 Project.allProjects(userId)
 .then(result => {
-  const onclickHandler = async function() 
+  console.log(result);
+  const onclickHandler = async function()
   {
     Database.setCurrentProject(this.id);
     Doman.setTitle(this.innerHTML);
     const todos = await Todo.allTodos(this.id);
-    const todoList = Doman.createList(todos,'list-group-item',Doman.displayTodo);
+    const todoList = Doman.createList(todos, 'list-group-item', Doman.displayTodo);
     Doman.cleanElement('todo-list');
-    Doman.addChild('todo-list',todoList);
+    Doman.addChild('todo-list', todoList);
   };
 
-  const list = Doman.createList(result,'btn btn-info m-2',onclickHandler);
+  const list = Doman.createList(result, 'btn btn-info m-2', onclickHandler);
   Doman.addChild('projects-list', list);
 });

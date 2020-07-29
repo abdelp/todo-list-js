@@ -17,7 +17,7 @@ const cleanForm = formId => {
 };
 
 const hideModal = modalId => {
-  $(modalId).modal('hide');
+  $(`#${modalId}`).modal('hide');
 }
 
 const createList = (list,classes,method) => {
