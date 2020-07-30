@@ -11,9 +11,7 @@ const getFormValues = formId => {
 
 const cleanForm = formId => {
   let form = document.getElementById(formId);
-  console.log(form);
   form.reset();
-  console.log(form);
 };
 
 const hideModal = modalId => {
@@ -149,11 +147,23 @@ const openEditModal = (modalId, todo) => {
   let form = document.getElementById('todo-modal').querySelector('form');
   let hiddenInput = form.querySelector('#todo-id');
   hiddenInput.setAttribute('value', todo.id);
-  form.querySelector('#title').setAttribute('value',todo.innerText);
-  form.querySelector('#description').setAttribute('value',todo.description);
-  form.querySelector('#dueDate').setAttribute('value',todo.dueDate);
-  form.querySelector('#priority').setAttribute('value',todo.priority);
+  form.querySelector('#title').value = todo.innerText;
+  form.querySelector('#description').value = todo.description;
+  form.querySelector('#dueDate').value = todo.dueDate;
+  select("priority", todo.priority);
   $('#todo-modal').modal('show');
 };
+
+function select(selectId, optionValToSelect){
+  let selectElement = document.getElementById(selectId);
+  let selectOptions = selectElement.options;
+
+  for (let opt, j = 0; opt = selectOptions[j]; j++) {
+    if (opt.value == optionValToSelect) {
+      selectElement.selectedIndex = j;
+      break;
+    }
+  }
+}
 
 export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};
