@@ -77,10 +77,10 @@ const loadProjects = () => {
 
 const loadTodos = async (msg,projectId) => {
   const todos = await Todo.allTodos(projectId);
-  let todoCollaps = [];
+  let todoCollapses = [];
 
   todos.forEach(todo => {
-    const todoCollapse = Doman.createCollapse({title: todo.title });
+    const todoCollapse = Doman.createCollapse({id: todo.id,bodyId:`${todo.id}-body`,innerText: todo.title });
     todoCollapses.push(todoCollapse);
   });
 
