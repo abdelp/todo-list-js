@@ -20,7 +20,7 @@ const create = async (data) => {
 
 const allProjects = async (userId) => {
   const collection = 'projects';
-  const projects = await Database.getDoc(collection, {params: [{key: "userId", sign: "==", value: userId}], orderBy: {field: "createdAt", order: "desc"}});
+  const projects = await Database.getCollection(collection, {params: [{key: "userId", sign: "==", value: userId}], orderBy: {field: "createdAt", order: "desc"}});
   return projects;
 }
 
