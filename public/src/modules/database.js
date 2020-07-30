@@ -21,21 +21,45 @@ const getCurrentProject = () => {
   return localStorage.getItem('currentProject');
 };
 
-const getDoc = async (collection, params = {}) => {
+const getDoc = async (collection, queryProps = {}) => {
+  const {params, orderBy, doc} = queryProps;
+  let collectionRef = firestore.collection(collection);
+
+  if (params) {
+    params.forEach(param => {
+      collectionRef = collectionRef.where(param.key, param.sign, param.value);
+    });
+  }
+  if (orderBy) {
+    collectionRef = collectionRef.orderBy(orderBy.field, orderBy.order);
+  }
+  if (doc) {
+    collectionRef = collectionRef.doc(doc);
+  }
+
+  let result;
+
+  try {
+    const rDoc = await collectionRef.get();
+    result = {id: rDoc.id, ...rDoc.data()};
+  } catch(error) {
+    result = await error;
+  };
+
+  return result;
+};
+
+const getCollection = async (collection, queryProps = {}) => {
+  const {params, orderBy, doc} = queryProps;
   let collectionRef = firestore.collection(collection);
 
   if(params) {
-    if(params.params) {
-      params.params.forEach(param => {
-        collectionRef = collectionRef.where(param.key, param.sign, param.value);
-      });
-    }
-    if (params.orderBy) {
-      collectionRef = collectionRef.orderBy(params.orderBy.field, params.orderBy.order);
-    }
-    if (params.doc) {
-      collectionRef.doc(params.doc);
-    }
+    params.forEach(param => {
+      collectionRef = collectionRef.where(param.key, param.sign, param.value);
+    });
+  }
+  if (orderBy) {
+    collectionRef = collectionRef.orderBy(orderBy.field, orderBy.order);
   }
 
   let result = [];
@@ -76,4 +100,4 @@ const currentTimestamp = () => {
   return firebase.firestore.FieldValue.serverTimestamp();
 };
 
-export {add, getDoc, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
+export {add, getDoc, getCollection, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
