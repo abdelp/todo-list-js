@@ -62,22 +62,29 @@ const createButton = (params) => {
   return btn;
 };
 
-const createCollapse = (element,innerElement) => {
+const createCollapse = (element) => {
   let container = document.createElement('div');
   let collapseBtn = document.createElement('button');
   collapseBtn.className = 'btn btn-secondary w-100 mt-2';
   collapseBtn.type = 'button';
   collapseBtn.setAttribute('data-toggle','collapse');
-  collapseBtn.setAttribute('data-target',element.id);
-  collapseBtn.setAttribute('aria-expanded','false');
-  collapseBtn.setAttribute('aria-controls',element.id)
+  const collapseId = `t-${element.id}`;
+  collapseBtn.setAttribute('data-target', `#${collapseId}`);
+  // collapseBtn.setAttribute('aria-expanded', 'false');
+  collapseBtn.setAttribute('aria-controls', collapseId)
   collapseBtn.innerText = element.innerText;
 
   let collapse = document.createElement('div');
+  collapse.id = collapseId;
   collapse.className = 'collapse';
   let collapseBody = document.createElement('div');
-  collapseBody.id  = element.bodyId;
   collapseBody.className = "card card-body";
+
+  const innerElement = document.createElement('div');
+
+  // temporal
+  innerElement.innerHTML = `description: ${element.description}`;
+
   collapseBody.appendChild(innerElement);
   collapse.appendChild(collapseBody);
 
