@@ -11,7 +11,9 @@ const getFormValues = formId => {
 
 const cleanForm = formId => {
   let form = document.getElementById(formId);
+  console.log(form);
   form.reset();
+  console.log(form);
 };
 
 const hideModal = modalId => {
