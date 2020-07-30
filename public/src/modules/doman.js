@@ -67,11 +67,11 @@ const createCollapse = (element) => {
   let collapseBtn = document.createElement('button');
   collapseBtn.className = 'btn btn-secondary w-100 mt-2';
   collapseBtn.type = 'button';
-  collapseBtn.setAttribute('data-toggle','collapse');
+  collapseBtn.setAttribute('data-toggle', 'collapse');
   const collapseId = `t-${element.id}`;
   collapseBtn.setAttribute('data-target', `#${collapseId}`);
   collapseBtn.setAttribute('aria-expanded', 'false');
-  collapseBtn.setAttribute('aria-controls', collapseId)
+  collapseBtn.setAttribute('aria-controls', collapseId);
   collapseBtn.innerText = element.innerText;
 
   let collapse = document.createElement('div');
@@ -88,23 +88,38 @@ const createCollapse = (element) => {
   const todoDate = document.createElement('h6');
   todoDate.innerHTML = `Date: ${element.dueDate}`
 
-  console.log(element.priority)
   const todoPriority = createBadge(element.priority);
-  console.log(todoPriority);
   
   todoTop.appendChild(todoDate);
   todoTop.appendChild(todoPriority);
 
-  const todoBottom = document.createElement('div')
+  const todoBody = document.createElement('div')
   const todoDescription = document.createElement('p');
   todoDescription.innerHTML = `Details<br>${element.description}`;
 
-  todoBottom.appendChild(todoDescription);
+  todoBody.appendChild(todoDescription);
 
   collapseBody.appendChild(todoTop);
-  collapseBody.appendChild(todoBottom);
+  collapseBody.appendChild(todoBody);
 
   collapse.appendChild(collapseBody);
+
+  let todoBottom = document.createElement('div');
+  todoBottom.className = 'text-right';
+
+  let editBtn = document.createElement('button');
+  editBtn.className = 'btn btn-success m-1';
+  editBtn.innerText = 'Edit';
+  editBtn.onclick = () => openEditModal('todo-modal', element.id);
+  todoBottom.appendChild(editBtn);
+
+  let deleteBtn = document.createElement('button');
+  deleteBtn.className = 'btn btn-danger';
+  deleteBtn.innerText = 'Delete';
+
+  todoBottom.appendChild(deleteBtn);
+
+  todoBody.appendChild(todoBottom);
 
   container.appendChild(collapseBtn);
   container.appendChild(collapse);
@@ -128,5 +143,12 @@ const createBadge = (priority) => {
   return badge;
 }
 
+const openEditModal = (modalId, todoId) => {
+  let form = document.getElementById('todo-modal').querySelector('form');
+  let hiddenInput = form.querySelector('#todo-id');
+
+  hiddenInput.setAttribute('value', todoId);
+  $('#todo-modal').modal('show');
+}
 
 export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};
