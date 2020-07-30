@@ -23,7 +23,7 @@ const createList = (list) => {
   ul.className = 'list-group mt-3';
   list.forEach(item => {
     let li = document.createElement('li');
-    li.className = 'list-group-item';
+    li.className = 'list-group-item border-0';
     li.id = item.id;
     li.appendChild(item);
     ul.appendChild(li);
@@ -62,9 +62,29 @@ const createButton = (params) => {
   return btn;
 };
 
-const createCollapse = (element) => {
+const createCollapse = (element,innerElement) => {
+  let container = document.createElement('div');
+  let collapseBtn = document.createElement('button');
+  collapseBtn.className = 'btn btn-secondary w-100 mt-2';
+  collapseBtn.type = 'button';
+  collapseBtn.setAttribute('data-toggle','collapse');
+  collapseBtn.setAttribute('data-target',element.id);
+  collapseBtn.setAttribute('aria-expanded','false');
+  collapseBtn.setAttribute('aria-controls',element.id)
+  collapseBtn.innerText = element.innerText;
+
   let collapse = document.createElement('div');
+  collapse.className = 'collapse';
+  let collapseBody = document.createElement('div');
+  collapseBody.id  = element.bodyId;
+  collapseBody.className = "card card-body";
+  collapseBody.appendChild(innerElement);
+  collapse.appendChild(collapseBody);
+
+  container.appendChild(collapseBtn);
+  container.appendChild(collapse);
+  
+  return container;
 };
 
-export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton};
-
+export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};
