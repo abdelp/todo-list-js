@@ -82,7 +82,6 @@ const createCollapse = (element) => {
 
   const innerElement = document.createElement('div');
 
-  // temporal
   const todoTop = document.createElement('div')
   todoTop.className = 'd-flex flex-row justify-content-between';
 
