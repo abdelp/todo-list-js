@@ -89,9 +89,10 @@ const createCollapse = (element) => {
   const todoDate = document.createElement('h6');
   todoDate.innerHTML = `Date: ${element.dueDate}`
 
-  const todoPriority = document.createElement('span');
-  todoPriority.innerHTML = `Priority ${element.priority}`;
-
+  console.log(element.priority)
+  const todoPriority = createBadge(element.priority);
+  console.log(todoPriority);
+  
   todoTop.appendChild(todoDate);
   todoTop.appendChild(todoPriority);
 
@@ -111,6 +112,22 @@ const createCollapse = (element) => {
   
   return container;
 };
+
+const createBadge = (priority) => {
+  let badge = document.createElement('span');
+  if(priority === "1"){
+    badge.className = 'badge badge-danger h-75';
+    badge.innerText = 'High';
+  }else if (priority === "2"){
+    badge.className = 'badge badge-success h-75';
+    badge.innerHTML = 'Medium';
+  }else if(priority === "3") {
+    badge.className = 'badge badge-warning h-75';
+    badge.innerHTML = 'Low';
+  }
+
+  return badge;
+}
 
 
 export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};
