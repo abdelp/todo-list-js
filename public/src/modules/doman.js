@@ -154,6 +154,6 @@ const openEditModal = (modalId, todo) => {
   form.querySelector('#dueDate').setAttribute('value',todo.dueDate);
   form.querySelector('#priority').setAttribute('value',todo.priority);
   $('#todo-modal').modal('show');
-}
+};
 
 export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};

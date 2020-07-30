@@ -86,7 +86,7 @@ const loadProjects = () => {
       const list = Doman.createList(projectsButtons);
       Doman.addChild('projects-list', list);
     });
-}
+};
 
 const loadTodos = async (msg, projectId) => {
   const todos = await Todo.allTodos(projectId);
@@ -106,7 +106,7 @@ const loadTodos = async (msg, projectId) => {
   const todoList = Doman.createList(todoCollapses);
   Doman.cleanElement('todo-list');
   Doman.addChild('todo-list', todoList);
-}
+};
 
 const projectToken = PubSub.subscribe('LOAD PROJECTS', loadProjects);
 const todoToken = PubSub.subscribe('LOAD TODOS', loadTodos);
