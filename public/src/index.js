@@ -19,10 +19,9 @@ const addProject = () => {
 let addProjectBtn = document.getElementById('add-project');
 addProjectBtn.onclick = addProject;
 
-
-$('#todo-modal').on('hidden.bs.modal', function (e) {
+$('#todo-modal').on('hidden.bs.modal', e => {
   Doman.cleanForm('todo-form');
-})
+});
 
 const addTodo = () => {
   const data = Doman.getFormValues('todo-form');
