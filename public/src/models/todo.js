@@ -17,7 +17,7 @@ const create = (projectId,data) => {
 
 const allTodos = async (projectId) => {
   const collection = `projects/${projectId}/todos`;
-  const todos = await Database.getDoc(collection);
+  const todos = await Database.getCollection(collection);
   return todos;
 }
 
