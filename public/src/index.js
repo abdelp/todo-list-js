@@ -50,8 +50,8 @@ if (!userId) {
 } else {
   Database.getDoc('projects', { doc: Database.getCurrentProject() })
     .then(doc => {
-      Doman.setTitle(doc[0].title);
-      loadTodos('',doc[0].id)
+      Doman.setTitle(doc.title);
+      loadTodos('', doc.id);
     })
     .catch(error => {
       console.log(error);
@@ -75,16 +75,16 @@ const loadProjects = () => {
     });
 }
 
-const loadTodos = async (msg,projectId) => {
+const loadTodos = async (msg, projectId) => {
   const todos = await Todo.allTodos(projectId);
   let todoCollapses = [];
 
   todos.forEach(todo => {
-    const todoCollapse = Doman.createCollapse({id: todo.id,bodyId:`${todo.id}-body`,innerText: todo.title });
+    const todoCollapse = Doman.createCollapse({id: todo.id, innerText: todo.title, description: todo.description });
     todoCollapses.push(todoCollapse);
   });
 
-  const todoList = Doman.createList(todosCollapses, 'list-group-item');
+  const todoList = Doman.createList(todoCollapses);
   Doman.cleanElement('todo-list');
   Doman.addChild('todo-list', todoList);
 }
