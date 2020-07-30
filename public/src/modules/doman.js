@@ -110,7 +110,7 @@ const createCollapse = (element) => {
   let editBtn = document.createElement('button');
   editBtn.className = 'btn btn-success m-1';
   editBtn.innerText = 'Edit';
-  editBtn.onclick = () => openEditModal('todo-modal', element.id);
+  editBtn.onclick = () => openEditModal('todo-modal', element);
   todoBottom.appendChild(editBtn);
 
   let deleteBtn = document.createElement('button');
@@ -143,11 +143,14 @@ const createBadge = (priority) => {
   return badge;
 }
 
-const openEditModal = (modalId, todoId) => {
+const openEditModal = (modalId, todo) => {
   let form = document.getElementById('todo-modal').querySelector('form');
   let hiddenInput = form.querySelector('#todo-id');
-
-  hiddenInput.setAttribute('value', todoId);
+  hiddenInput.setAttribute('value', todo.id);
+  form.querySelector('#title').setAttribute('value',todo.innerText);
+  form.querySelector('#description').setAttribute('value',todo.description);
+  form.querySelector('#dueDate').setAttribute('value',todo.dueDate);
+  form.querySelector('#priority').setAttribute('value',todo.priority);
   $('#todo-modal').modal('show');
 }
 
