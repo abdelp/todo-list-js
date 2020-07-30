@@ -70,7 +70,7 @@ const createCollapse = (element) => {
   collapseBtn.setAttribute('data-toggle','collapse');
   const collapseId = `t-${element.id}`;
   collapseBtn.setAttribute('data-target', `#${collapseId}`);
-  // collapseBtn.setAttribute('aria-expanded', 'false');
+  collapseBtn.setAttribute('aria-expanded', 'false');
   collapseBtn.setAttribute('aria-controls', collapseId)
   collapseBtn.innerText = element.innerText;
 
@@ -83,9 +83,27 @@ const createCollapse = (element) => {
   const innerElement = document.createElement('div');
 
   // temporal
-  innerElement.innerHTML = `description: ${element.description}`;
+  const todoTop = document.createElement('div')
+  todoTop.className = 'd-flex flex-row justify-content-between';
 
-  collapseBody.appendChild(innerElement);
+  const todoDate = document.createElement('h6');
+  todoDate.innerHTML = `Date: ${element.dueDate}`
+
+  const todoPriority = document.createElement('span');
+  todoPriority.innerHTML = `Priority ${element.priority}`;
+
+  todoTop.appendChild(todoDate);
+  todoTop.appendChild(todoPriority);
+
+  const todoBottom = document.createElement('div')
+  const todoDescription = document.createElement('p');
+  todoDescription.innerHTML = `Details<br>${element.description}`;
+
+  todoBottom.appendChild(todoDescription);
+
+  collapseBody.appendChild(todoTop);
+  collapseBody.appendChild(todoBottom);
+
   collapse.appendChild(collapseBody);
 
   container.appendChild(collapseBtn);
@@ -93,5 +111,6 @@ const createCollapse = (element) => {
   
   return container;
 };
+
 
 export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};
