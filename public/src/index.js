@@ -25,7 +25,7 @@ const addTodo = () => {
   Todo.create(currentProject, data);
   Doman.cleanForm('todo-form');
   Doman.hideModal('todo-modal');
-  PubSub.publish('LOAD TODOS',currentProject);
+  PubSub.publish('LOAD TODOS', currentProject);
 };
 
 let addTodoBtn = document.getElementById('add-todo');
@@ -69,7 +69,7 @@ const loadProjects = () => {
         loadTodos('', this.id);
       };
 
-      const projectsButtons = result.map(item => Doman.createButton({id: item.id, innerText: item.title, onclick: onclickHandler }));
+      const projectsButtons = result.map(item => Doman.createButton({ id: item.id, innerText: item.title, onclick: onclickHandler }));
       const list = Doman.createList(projectsButtons);
       Doman.addChild('projects-list', list);
     });
@@ -80,7 +80,7 @@ const loadTodos = async (msg, projectId) => {
   let todoCollapses = [];
 
   todos.forEach(todo => {
-    const todoCollapse = Doman.createCollapse({id: todo.id, innerText: todo.title, description: todo.description });
+    const todoCollapse = Doman.createCollapse({ id: todo.id, innerText: todo.title, description: todo.description, dueDate: todo.dueDate, priority: todo.priority });
     todoCollapses.push(todoCollapse);
   });
 
