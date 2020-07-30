@@ -58,6 +58,14 @@ if (!userId) {
     });
 }
 
+const editTodo = () => {
+  const data = Doman.getFormValues('todo-form');
+  Todo.update(data);
+  Doman.cleanForm('todo-form');
+  Doman.hideModal('todo-modal');
+  PubSub.publish('LOAD TODOS', currentProject);
+};
+
 const loadProjects = () => {
   const userId = Database.getUserId();
   Doman.cleanElement('projects-list');
@@ -80,7 +88,13 @@ const loadTodos = async (msg, projectId) => {
   let todoCollapses = [];
 
   todos.forEach(todo => {
-    const todoCollapse = Doman.createCollapse({ id: todo.id, innerText: todo.title, description: todo.description, dueDate: todo.dueDate, priority: todo.priority });
+    const data = { id: todo.id,
+                   innerText: todo.title,
+                   description: todo.description,
+                   dueDate: todo.dueDate,
+                   priority: todo.priority };
+
+    const todoCollapse = Doman.createCollapse(data);
     todoCollapses.push(todoCollapse);
   });
 
