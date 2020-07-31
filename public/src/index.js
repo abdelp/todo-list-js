@@ -32,14 +32,14 @@ const addTodo = () => {
     .then(result => {
       Doman.cleanForm('todo-form');
       Doman.hideModal('todo-modal');
-      PubSub.publish('LOAD TODOS', currentProject);
+      PubSub.publish('LOAD TODOS', 'today', currentProject);
     });
   }else {
     Todo.update(currentProject, data)
     .then(result => {
       Doman.cleanForm('todo-form');
       Doman.hideModal('todo-modal');
-      PubSub.publish('LOAD TODOS',currentProject);
+      PubSub.publish('LOAD TODOS', 'today', currentProject);
     });
   }
   
@@ -68,7 +68,7 @@ if (!userId) {
   Database.getDoc('projects', { doc: Database.getCurrentProject() })
     .then(doc => {
       Doman.setTitle(doc.title);
-      loadTodos('', doc.id);
+      loadTodos('', 'today', doc.id);
     })
     .catch(error => {
       console.log(error);
@@ -83,7 +83,7 @@ const loadProjects = () => {
       const onclickHandler = async function () {
         Database.setCurrentProject(this.id);
         Doman.setTitle(this.innerHTML);
-        loadTodos('', this.id);
+        loadTodos('', 'today', this.id);
       };
 
       const projectsButtons = result.map(item => Doman.createButton({ id: item.id, innerText: item.title, color: 'info', onclick: onclickHandler }));
@@ -92,8 +92,25 @@ const loadProjects = () => {
     });
 };
 
-const loadTodos = async (msg, projectId) => {
-  const todos = await Todo.allTodos(projectId);
+const loadTodos = async (msg, condition, projectId) => {
+  let sign;
+  const currentDate = getCurrentDate();
+  let container;
+
+  if (condition === 'today') {
+    sign = '==';
+    container = 'today-todo-list';
+  } else if (condition === 'upcoming') {
+    sign = '>';
+    container = 'upcoming-todo-list';
+  } else if (condition === 'completed') {
+    sign = '<';
+    container = 'completed-todo-list';
+  }
+
+  const conditions = {params: [{key: 'dueDate', sign: sign, value: currentDate}]};
+
+  const todos = await Todo.where(projectId, conditions);
   let todoCollapses = [];
 
   todos.forEach(todo => {
@@ -102,7 +119,7 @@ const loadTodos = async (msg, projectId) => {
       PubSub.publish('LOAD TODOS', projectId);
       Doman.hideModal('confirm-modal');
     };
-  
+
     const data = { id: todo.id,
                    innerText: todo.title,
                    description: todo.description,
@@ -118,11 +135,28 @@ const loadTodos = async (msg, projectId) => {
 
   const todoList = Doman.createList(todoCollapses);
 
-  Doman.cleanElement('today-todo-list');
-  Doman.addChild('today-todo-list', todoList);
+  Doman.cleanElement(container);
+  Doman.addChild(container, todoList);
 };
 
 const projectToken = PubSub.subscribe('LOAD PROJECTS', loadProjects);
 const todoToken = PubSub.subscribe('LOAD TODOS', loadTodos);
 
 loadProjects();
+
+const getCurrentDate = () => {
+  const date = new Date();
+  const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  const [{value: month},,{value: day },,{ value: year }] = dateTimeFormat.formatToParts(date);
+  const currentDate = `${year}-${month}-${day}`;
+  return currentDate;
+};
+
+let completedTodosBtn = document.getElementById('completed-todos-btn');
+completedTodosBtn.onclick = () => loadTodos('', 'completed', Database.getCurrentProject);
+
+let upcomingTodosBtn = document.getElementById('upcoming-todos-btn');
+upcomingTodosBtn.onclick = () => loadTodos('', 'upcoming', Database.getCurrentProject);
+
+let todayTodosBtn = document.getElementById('today-todos-btn');
+todayTodosBtn.onclick = () => loadTodos('', 'today', Database.getCurrentProject);
