@@ -126,4 +126,4 @@ const currentTimestamp = () => {
   return firebase.firestore.FieldValue.serverTimestamp();
 };
 
-export {add,edit, getDoc, deleteDoc, getCollection, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
+export {add, edit, getDoc, deleteDoc, getCollection, getUserId, setCurrentProject, getDefaultProject, currentTimestamp, getCurrentProject};
