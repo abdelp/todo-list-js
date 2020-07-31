@@ -37,10 +37,6 @@ const setTitle = (title) => {
   elem.innerHTML = title ;
 };
 
-const displayTodo = () => {
-  const todos = document.getElementById('todo-list');
-  todos.innerHTML = '';
-};
 
 const cleanElement = (containerId) => {
   let container = document.getElementById(containerId);
@@ -168,4 +164,4 @@ const showConfirmModal = (deleteHandler) => {
   $('#confirm-modal').modal('show');
 };
 
-export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton, createCollapse, showConfirmModal};
+export {getFormValues, cleanForm, hideModal, createList, addChild,cleanElement, setTitle, createButton, createCollapse, showConfirmModal};
