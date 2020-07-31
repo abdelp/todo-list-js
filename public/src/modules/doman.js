@@ -57,7 +57,7 @@ const createButton = (params) => {
 
   let btn = document.createElement('button');
   btn.id = id;
-  btn.className = `btn btn-${color} w-100`;
+  btn.className = `btn btn-${color} w-100 mb-1`;
   btn.innerText = innerText;
   btn.onclick = onclick;
   btn.type = 'button';
@@ -109,14 +109,10 @@ const createCollapse = (element) => {
   let todoBottom = document.createElement('div');
   todoBottom.className = 'text-right';
 
-  let editBtn = document.createElement('button');
-  editBtn.className = 'btn btn-success m-1';
-  editBtn.innerText = 'Edit';
-  editBtn.onclick = () => openEditModal('todo-modal', element);
+  let editBtn = createButton({id: `edit-btn-${collapseId}`, color: 'success', onclick: () => openEditModal('todo-modal', element), innerText: 'Edit'});
   todoBottom.appendChild(editBtn);
 
-  let deleteBtn = createButton({id: `dlt-btn-${collapseId}`, color: 'danger', onclick: params.deleteBtn.onclick, innerText: 'Delete'});
-
+  let deleteBtn = createButton({id: `dlt-btn-${collapseId}`, color: 'danger', onclick: element.deleteButton.onclick, innerText: 'Delete'});
   todoBottom.appendChild(deleteBtn);
 
   todoBody.appendChild(todoBottom);
@@ -154,7 +150,7 @@ const openEditModal = (modalId, todo) => {
   $('#todo-modal').modal('show');
 };
 
-function select(selectId, optionValToSelect){
+const select = (selectId, optionValToSelect) => {
   let selectElement = document.getElementById(selectId);
   let selectOptions = selectElement.options;
 
@@ -164,6 +160,12 @@ function select(selectId, optionValToSelect){
       break;
     }
   }
-}
+};
 
-export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton,createCollapse};
+const showConfirmModal = (deleteHandler) => {
+  const deleteBtn = document.getElementById('confirm-btn');
+  deleteBtn.onclick = deleteHandler;
+  $('#confirm-modal').modal('show');
+};
+
+export {getFormValues, cleanForm, hideModal, createList, addChild, displayTodo, cleanElement, setTitle, createButton, createCollapse, showConfirmModal};
