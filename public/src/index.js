@@ -23,14 +23,27 @@ $('#todo-modal').on('hidden.bs.modal', e => {
   Doman.cleanForm('todo-form');
 });
 
+
 const addTodo = () => {
   const data = Doman.getFormValues('todo-form');
   const currentProject = Database.getCurrentProject();
-  Todo.create(currentProject, data);
-  Doman.cleanForm('todo-form');
-  Doman.hideModal('todo-modal');
-  PubSub.publish('LOAD TODOS', currentProject);
-};
+  if (!data['todo-id']){
+    Todo.create(currentProject, data)
+    .then(result => {
+      Doman.cleanForm('todo-form');
+      Doman.hideModal('todo-modal');
+      PubSub.publish('LOAD TODOS', currentProject);
+    });
+  }else {
+    Todo.update(data)
+    .then(result => {
+      Doman.cleanForm('todo-form');
+      Doman.hideModal('todo-modal');
+      PubSub.publish('LOAD TODOS',currentProject);
+    });
+  }
+  
+}
 
 let addTodoBtn = document.getElementById('add-todo');
 addTodoBtn.onclick = addTodo;
@@ -61,14 +74,6 @@ if (!userId) {
       console.log(error);
     });
 }
-
-const editTodo = () => {
-  const data = Doman.getFormValues('todo-form');
-  Todo.update(data);
-  Doman.cleanForm('todo-form');
-  Doman.hideModal('todo-modal');
-  PubSub.publish('LOAD TODOS', currentProject);
-};
 
 const loadProjects = () => {
   const userId = Database.getUserId();
