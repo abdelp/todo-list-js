@@ -76,7 +76,7 @@ const getDoc = async (collection, queryProps = {}) => {
 };
 
 const getCollection = async (collection, queryProps = {}) => {
-  const {params, orderBy, doc} = queryProps;
+  const {params, orderBy} = queryProps;
   let collectionRef = firestore.collection(collection);
 
   if(params) {
