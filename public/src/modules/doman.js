@@ -145,7 +145,7 @@ const createBadge = (priority) => {
 
 const openEditModal = (modalId, todo) => {
   let form = document.getElementById('todo-modal').querySelector('form');
-  let hiddenInput = form.querySelector('#todo-id');
+  let hiddenInput = form.querySelector('#id');
   hiddenInput.setAttribute('value', todo.id);
   form.querySelector('#title').value = todo.innerText;
   form.querySelector('#description').value = todo.description;
