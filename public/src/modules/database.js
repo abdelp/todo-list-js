@@ -13,7 +13,7 @@ const add = async (collection, data) => {
   return result;
 };
 
-const edit = async (collection,doc,data) => {
+const edit = async (collection, doc, data) => {
   let docRef = firestore.collection(collection).doc(doc);
   let result;
   

@@ -16,7 +16,7 @@ const create = async (projectId,data) => {
   return result;
 };
 
-const update = async (projectId,data) => {
+const update = async (projectId, data) => {
   const collection = `projects/${projectId}/todos`;
   const {id:doc} = data;
   let result;
