@@ -13,6 +13,19 @@ const add = async (collection, data) => {
   return result;
 };
 
+const edit = async (collection,doc,data) => {
+  let docRef = firestore.collection(collection).doc(doc);
+  let result;
+  
+  try {
+    result = await docRef.update(data);
+  }catch(error) {
+    result = await error;
+  };
+
+  return result;
+};
+
 const setCurrentProject = (projectId) => {
   localStorage.setItem('currentProject', projectId);
 };
@@ -100,4 +113,4 @@ const currentTimestamp = () => {
   return firebase.firestore.FieldValue.serverTimestamp();
 };
 
-export {add, getDoc, getCollection, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
+export {add,edit, getDoc, getCollection, getUserId, setCurrentProject, getDefaultProject, currentTimestamp,getCurrentProject};
