@@ -85,7 +85,7 @@ const loadProjects = () => {
         loadTodos('', this.id);
       };
 
-      const projectsButtons = result.map(item => Doman.createButton({ id: item.id, innerText: item.title, onclick: onclickHandler }));
+      const projectsButtons = result.map(item => Doman.createButton({ id: item.id, innerText: item.title, color: 'secondary', onclick: onclickHandler }));
       const list = Doman.createList(projectsButtons);
       Doman.addChild('projects-list', list);
     });
@@ -100,7 +100,10 @@ const loadTodos = async (msg, projectId) => {
                    innerText: todo.title,
                    description: todo.description,
                    dueDate: todo.dueDate,
-                   priority: todo.priority };
+                   priority: todo.priority,
+                   deleteButton: {
+                     onclick: () => Database.deleteDoc(todo.id)
+                   }};
 
     const todoCollapse = Doman.createCollapse(data);
     todoCollapses.push(todoCollapse);
