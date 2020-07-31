@@ -23,11 +23,10 @@ $('#todo-modal').on('hidden.bs.modal', e => {
   Doman.cleanForm('todo-form');
 });
 
-
 const addTodo = () => {
   const data = Doman.getFormValues('todo-form');
   const currentProject = Database.getCurrentProject();
-  if (!data['todo-id']){
+  if (!data['id']){
     Todo.create(currentProject, data)
     .then(result => {
       Doman.cleanForm('todo-form');
@@ -35,7 +34,7 @@ const addTodo = () => {
       PubSub.publish('LOAD TODOS', currentProject);
     });
   }else {
-    Todo.update(data)
+    Todo.update(currentProject, data)
     .then(result => {
       Doman.cleanForm('todo-form');
       Doman.hideModal('todo-modal');
