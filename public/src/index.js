@@ -4,6 +4,7 @@ import * as Todo from './models/todo';
 import * as Project from './models/project';
 import * as User from './models/user';
 import PubSub from 'pubsub-js';
+import './css/styles.css';
 
 const addProject = () => {
   const formId = 'project-form';
