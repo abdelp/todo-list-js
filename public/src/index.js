@@ -117,8 +117,9 @@ const loadTodos = async (msg, projectId) => {
   });
 
   const todoList = Doman.createList(todoCollapses);
-  Doman.cleanElement('todo-list');
-  Doman.addChild('todo-list', todoList);
+
+  Doman.cleanElement('today-todo-list');
+  Doman.addChild('today-todo-list', todoList);
 };
 
 const projectToken = PubSub.subscribe('LOAD PROJECTS', loadProjects);
