@@ -21,13 +21,26 @@ const update = async (projectId, data) => {
   const {id:doc} = data;
   let result;
   try {
-   result = await Database.edit(collection,doc,params(data));
+   result = await Database.edit(collection, doc, params(data));
   }catch(error){
     result = await error;
   }
 
   return result;
-}
+};
+
+const deleteTodo = async (projectId, docId) => {
+  const collection = `projects/${projectId}/todos`;
+  let result;
+
+  try {
+    result = await Database.deleteDoc(collection, docId);
+  } catch(error) {
+    result = await error;
+  }
+
+  return result;
+};
 
 const allTodos = async (projectId) => {
   const collection = `projects/${projectId}/todos`;
@@ -35,4 +48,4 @@ const allTodos = async (projectId) => {
   return todos;
 }
 
-export {create,update,allTodos};
+export {create, update, allTodos, deleteTodo};
