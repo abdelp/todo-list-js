@@ -48,4 +48,18 @@ const allTodos = async (projectId) => {
   return todos;
 }
 
-export {create, update, allTodos, deleteTodo};
+const where = async (projectId, conditions) => {
+  const collection = `projects/${projectId}/todos`;
+  let result;
+
+  try {
+    result = await Database.getCollection(collection, conditions);
+  } catch(error) {
+    result = await error;
+  }
+
+  console.log(result);
+  return result;
+};
+
+export {create, update, allTodos, deleteTodo, where};
