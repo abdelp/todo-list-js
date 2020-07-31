@@ -4,16 +4,30 @@ const params = ({title, description, dueDate, priority}) => {
   return {title, description, dueDate, priority};
 };
 
-const create = (projectId,data) => {
+const create = async (projectId,data) => {
   const collection = `projects/${projectId}/todos`;
-  Database.add(collection, params(data))
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+  let result;
+  try {
+    result = await Database.add(collection, params(data));
+  }catch(error){
+    result = await error;
+  }
+
+  return result;
 };
+
+const update = async (projectId,data) => {
+  const collection = `projects/${projectId}/todos`;
+  const {id:doc} = data;
+  let result;
+  try {
+   result = await Database.edit(collection,doc,params(data));
+  }catch(error){
+    result = await error;
+  }
+
+  return result;
+}
 
 const allTodos = async (projectId) => {
   const collection = `projects/${projectId}/todos`;
@@ -21,4 +35,4 @@ const allTodos = async (projectId) => {
   return todos;
 }
 
-export {create,allTodos};
+export {create,update,allTodos};
