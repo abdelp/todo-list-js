@@ -53,11 +53,13 @@ const addChild = (containerId, element) => {
 };
 
 const createButton = (params) => {
+  const {id, color = 'primary', innerText, onclick} = params;
+
   let btn = document.createElement('button');
-  btn.id = params.id;
-  btn.className = 'btn btn-info w-100';
-  btn.innerText = params.innerText;
-  btn.onclick = params.onclick;
+  btn.id = id;
+  btn.className = `btn btn-${color} w-100`;
+  btn.innerText = innerText;
+  btn.onclick = onclick;
   btn.type = 'button';
   return btn;
 };
@@ -113,9 +115,7 @@ const createCollapse = (element) => {
   editBtn.onclick = () => openEditModal('todo-modal', element);
   todoBottom.appendChild(editBtn);
 
-  let deleteBtn = document.createElement('button');
-  deleteBtn.className = 'btn btn-danger';
-  deleteBtn.innerText = 'Delete';
+  let deleteBtn = createButton({id: `dlt-btn-${collapseId}`, color: 'danger', onclick: params.deleteBtn.onclick, innerText: 'Delete'});
 
   todoBottom.appendChild(deleteBtn);
 
