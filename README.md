@@ -53,6 +53,28 @@ Initialize the firebase hosting service
 $ firebase init
 ```
 
+Select firestore and hosting features:
+
+![features](./assets/firebase_init_step_1.png)
+
+Select public/dist as the public directory:
+
+![public](./assets/firebase_init_step_2.png)
+
+## Deploy
+
+To deploy on your local environment run:
+
+```
+$ firebase serve
+```
+
+To deploy to your firebase production environment:
+
+```
+$ firebase deploy
+```
+
 ## Authors
 
 👤 **Abdel Pérez**
