@@ -153,10 +153,10 @@ const getCurrentDate = () => {
 };
 
 let completedTodosBtn = document.getElementById('completed-todos-btn');
-completedTodosBtn.onclick = () => loadTodos('', 'completed', Database.getCurrentProject);
+completedTodosBtn.onclick = () => loadTodos('', 'completed', Database.getCurrentProject());
 
 let upcomingTodosBtn = document.getElementById('upcoming-todos-btn');
-upcomingTodosBtn.onclick = () => loadTodos('', 'upcoming', Database.getCurrentProject);
+upcomingTodosBtn.onclick = () => loadTodos('', 'upcoming', Database.getCurrentProject());
 
 let todayTodosBtn = document.getElementById('today-todos-btn');
-todayTodosBtn.onclick = () => loadTodos('', 'today', Database.getCurrentProject);
+todayTodosBtn.onclick = () => loadTodos('', 'today', Database.getCurrentProject());
