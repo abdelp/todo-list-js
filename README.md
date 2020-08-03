@@ -33,11 +33,25 @@
 
 ## Installation
 
+### Prerequisite
+
+- Create a firebase [account](https://console.firebase.google.com/)
+- Install [firebase CLI](https://firebase.google.com/docs/cli)
+- Install [Node](https://nodejs.org/en/)
+
 ### Steps
 
 From the command line/terminal clone the repository:
 
-    $ git clone https://github.com/abdelp/todo-list-js.git
+```
+$ git clone https://github.com/abdelp/todo-list-js.git
+```
+
+Initialize the firebase hosting service
+
+```
+$ firebase init
+```
 
 ## Authors
 
