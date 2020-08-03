@@ -2,7 +2,7 @@
 
 > This project consists of building a todo list application with Javascript and firebase hosting.
 
-![screenshot]()
+![screenshot](./assets/screenshot.png)
 
 ## Built With
 
