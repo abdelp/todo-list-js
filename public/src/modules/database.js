@@ -122,7 +122,6 @@ const getUserId = () => {
 };
 
 const currentTimestamp = () => {
-  console.log(firebase.firestore.FieldValue.serverTimestamp());
   return firebase.firestore.FieldValue.serverTimestamp();
 };
 
