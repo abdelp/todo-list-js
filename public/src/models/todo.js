@@ -58,7 +58,6 @@ const where = async (projectId, conditions) => {
     result = await error;
   }
 
-  console.log(result);
   return result;
 };
 
