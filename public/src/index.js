@@ -17,8 +17,7 @@ const addProject = () => {
   PubSub.publish('LOAD PROJECTS');
 };
 
-let addProjectBtn = document.getElementById('add-project');
-addProjectBtn.onclick = addProject;
+Doman.assignBtn('add-project',addProject);
 
 $('#todo-modal').on('hidden.bs.modal', e => {
   Doman.cleanForm('todo-form');
@@ -45,8 +44,7 @@ const addTodo = () => {
   
 }
 
-let addTodoBtn = document.getElementById('add-todo');
-addTodoBtn.onclick = addTodo;
+Doman.assignBtn('add-todo',addTodo);
 
 const userId = Database.getUserId();
 
@@ -59,9 +57,6 @@ if (!userId) {
           Database.setCurrentProject(project.id);
           Doman.setTitle(data.title);
           loadProjects();
-        })
-        .catch(error => {
-          console.log(error);
         });
     });
 } else {
@@ -69,9 +64,6 @@ if (!userId) {
     .then(doc => {
       Doman.setTitle(doc.title);
       loadTodos('', 'today', doc.id);
-    })
-    .catch(error => {
-      console.log(error);
     });
 }
 
@@ -152,6 +144,6 @@ const getCurrentDate = () => {
   return currentDate;
 };
 
-Doman.assignListOnclick('completed-todos-btn',() => loadTodos('', 'completed', Database.getCurrentProject()));
-Doman.assignListOnclick('upcoming-todos-btn',() => loadTodos('', 'upcoming', Database.getCurrentProject()));
-Doman.assignListOnclick('today-todos-btn',() => loadTodos('', 'today', Database.getCurrentProject()));
+Doman.assignBtn('completed-todos-btn',() => loadTodos('', 'completed', Database.getCurrentProject()));
+Doman.assignBtn('upcoming-todos-btn',() => loadTodos('', 'upcoming', Database.getCurrentProject()));
+Doman.assignBtn('today-todos-btn',() => loadTodos('', 'today', Database.getCurrentProject()));
