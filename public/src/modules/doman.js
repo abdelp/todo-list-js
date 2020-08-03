@@ -164,9 +164,9 @@ const showConfirmModal = (deleteHandler) => {
   $('#confirm-modal').modal('show');
 };
 
-const assignListOnclick = (btnId,onclickHandler) => {
+const assignBtn = (btnId,onclickHandler) => {
   let btnElement = document.getElementById(btnId);
   btnElement.onclick = onclickHandler;
 }
 
-export {getFormValues, cleanForm, hideModal, createList, addChild,cleanElement, setTitle, createButton, createCollapse, showConfirmModal,assignListOnclick};
+export {getFormValues, cleanForm, hideModal, createList, addChild,cleanElement, setTitle, createButton, createCollapse, showConfirmModal,assignBtn};
