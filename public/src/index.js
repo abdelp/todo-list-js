@@ -152,11 +152,6 @@ const getCurrentDate = () => {
   return currentDate;
 };
 
-let completedTodosBtn = document.getElementById('completed-todos-btn');
-completedTodosBtn.onclick = () => loadTodos('', 'completed', Database.getCurrentProject());
-
-let upcomingTodosBtn = document.getElementById('upcoming-todos-btn');
-upcomingTodosBtn.onclick = () => loadTodos('', 'upcoming', Database.getCurrentProject());
-
-let todayTodosBtn = document.getElementById('today-todos-btn');
-todayTodosBtn.onclick = () => loadTodos('', 'today', Database.getCurrentProject());
+Doman.assignListOnclick('completed-todos-btn',() => loadTodos('', 'completed', Database.getCurrentProject()));
+Doman.assignListOnclick('upcoming-todos-btn',() => loadTodos('', 'upcoming', Database.getCurrentProject()));
+Doman.assignListOnclick('today-todos-btn',() => loadTodos('', 'today', Database.getCurrentProject()));
