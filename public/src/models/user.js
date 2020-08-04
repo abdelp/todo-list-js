@@ -1,8 +1,6 @@
 import * as Database from '../modules/database';
 
-const params = ({userName, createdAt}) => {
-  return {userName, createdAt};
-};
+const params = ({ userName, createdAt }) => ({ userName, createdAt });
 
 const create = async (data) => {
   const collection = 'users';
@@ -11,12 +9,12 @@ const create = async (data) => {
 
   try {
     result = await Database.add(collection, params(data));
-    localStorage.setItem("userId", result.id);
-  } catch(error) {
+    localStorage.setItem('userId', result.id);
+  } catch (error) {
     result = await error;
-  };
+  }
 
   return result;
 };
 
-export {create};
+export default create;

@@ -1,40 +1,40 @@
-let firestore = firebase.firestore();
+const firestore = firebase.firestore(); // eslint-disable-line no-undef
 
 const add = async (collection, data) => {
-  let collRef = firestore.collection(collection);
+  const collRef = firestore.collection(collection);
   let result;
 
   try {
     result = await collRef.add(data);
-  }catch(error) {
+  } catch (error) {
     result = await error;
-  };
+  }
 
   return result;
 };
 
 const edit = async (collection, doc, data) => {
-  let docRef = firestore.collection(collection).doc(doc);
+  const docRef = firestore.collection(collection).doc(doc);
   let result;
-  
+
   try {
     result = await docRef.update(data);
-  }catch(error) {
+  } catch (error) {
     result = await error;
-  };
+  }
 
   return result;
 };
 
 const deleteDoc = async (collection, doc) => {
-  let docRef = firestore.collection(collection).doc(doc);
+  const docRef = firestore.collection(collection).doc(doc);
   let result;
-  
+
   try {
     result = await docRef.delete();
-  }catch(error) {
+  } catch (error) {
     result = await error;
-  };
+  }
 
   return result;
 };
@@ -43,12 +43,14 @@ const setCurrentProject = (projectId) => {
   localStorage.setItem('currentProject', projectId);
 };
 
-const getCurrentProject = () => {
-  return localStorage.getItem('currentProject');
-};
+const getCurrentProject = () => localStorage.getItem('currentProject');
 
 const getDoc = async (collection, queryProps = {}) => {
-  const {params, orderBy, doc} = queryProps;
+  const {
+    params,
+    orderBy,
+    doc,
+  } = queryProps;
   let collectionRef = firestore.collection(collection);
 
   if (params) {
@@ -67,19 +69,25 @@ const getDoc = async (collection, queryProps = {}) => {
 
   try {
     const rDoc = await collectionRef.get();
-    result = {id: rDoc.id, ...rDoc.data()};
-  } catch(error) {
+    result = {
+      id: rDoc.id,
+      ...rDoc.data(),
+    };
+  } catch (error) {
     result = await error;
-  };
+  }
 
   return result;
 };
 
 const getCollection = async (collection, queryProps = {}) => {
-  const {params, orderBy} = queryProps;
+  const {
+    params,
+    orderBy,
+  } = queryProps;
   let collectionRef = firestore.collection(collection);
 
-  if(params) {
+  if (params) {
     params.forEach(param => {
       collectionRef = collectionRef.where(param.key, param.sign, param.value);
     });
@@ -94,11 +102,14 @@ const getCollection = async (collection, queryProps = {}) => {
     const docs = await collectionRef.get();
 
     docs.forEach(doc => {
-      result.push({id: doc.id, ...doc.data()});
+      result.push({
+        id: doc.id,
+        ...doc.data(),
+      });
     });
-  } catch(error) {
+  } catch (error) {
     result = await error;
-  };
+  }
 
   return result;
 };
@@ -107,22 +118,40 @@ const getDefaultProject = async (userId) => {
   let result;
 
   try {
-    const params = [{key: "title", sign: "==", value: "default"},
-                    {key: "userId", sign: "==", value: userId}];
+    const params = [{
+      key: 'title',
+      sign: '==',
+      value: 'default',
+    },
+    {
+      key: 'userId',
+      sign: '==',
+      value: userId,
+    },
+    ];
     result = await getDoc('projects', params);
-  } catch(error) {
+  } catch (error) {
     result = await error;
   }
 
   return result[0];
 };
 
-const getUserId = () => {
-  return localStorage.getItem("userId");
-};
+const getUserId = () => localStorage.getItem('userId');
 
 const currentTimestamp = () => {
-  return firebase.firestore.FieldValue.serverTimestamp();
+  firebase.firestore.FieldValue.serverTimestamp(); // eslint-disable-line no-undef
 };
 
-export {add, edit, getDoc, deleteDoc, getCollection, getUserId, setCurrentProject, getDefaultProject, currentTimestamp, getCurrentProject};
+export {
+  add,
+  edit,
+  getDoc,
+  deleteDoc,
+  getCollection,
+  getUserId,
+  setCurrentProject,
+  getDefaultProject,
+  currentTimestamp,
+  getCurrentProject,
+};
