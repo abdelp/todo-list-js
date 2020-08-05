@@ -1,0 +1,14 @@
+* {
+  font-family: 'Comfortaa', cursive;
+}
+
+.heading {
+  font-family: 'Ranchers', cursive;
+  font-size: 50px;
+}
+
+body {
+  background-image: url("https://thumbs.dreamstime.com/b/stationery-background-school-tools-seamless-pattern-art-education-wallpaper-line-icons-pencil-pen-paintbrush-palette-169146367.jpg");
+  height: 100%;
+  background-position: center;
+}
